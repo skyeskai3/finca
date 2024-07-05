@@ -1,7 +1,90 @@
-body {
+/* static/style.css */
+
+html, body {
+    height: 100%;
+    margin: 0;
     font-family: Arial, sans-serif;
-  }
-  form {
-    margin-bottom: 20px;
-  }
-  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f4f9;
+    overflow: hidden; /* Prevent overflow */
+}
+
+.form-container, .login-box {
+    width: 500px;
+    padding: 40px;
+    background: rgba(0,0,0,.5);
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #fff;
+    overflow-y: auto; /* Ensure content is scrollable if necessary */
+    max-height: 90vh; /* Prevents overflow on very long forms */
+}
+
+.form-container h1, .login-box h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group, .user-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group label, .user-box label {
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group textarea,
+.user-box input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+    background: transparent;
+    color: #fff;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+button, .login-box a {
+    width: 100%;
+    padding: 10px;
+    background: #03e9f4;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+button:hover, .login-box a:hover {
+    background: #029dbb;
+}
+
+.user-box input:focus ~ label,
+.user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+}
+
+.user-box input {
+    border-bottom: 1px solid #fff;
+}

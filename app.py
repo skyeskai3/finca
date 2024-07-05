@@ -4,18 +4,15 @@ from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.secret_key = 'your_secret_key'  # Change this to a random secret key
 
 mysql = MySQL(app)
-
-# Define your PIN here (should ideally be stored securely, not hardcoded)
-PIN = '5656'
+app.secret_key = 'supersecretkey'  # Change this to a secure secret key
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         pin = request.form['pin']
-        if pin == PIN:
+        if pin == '5656':  # Replace 'your_secret_pin' with the actual PIN
             session['logged_in'] = True
             return redirect(url_for('registro'))
         else:
@@ -26,7 +23,7 @@ def login():
 def registro():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-
+    
     if request.method == 'POST':
         # Get form data
         finca = request.form['finca']

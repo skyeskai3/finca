@@ -2,23 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Zambrano Finca Acceso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Login</h1>
-    <form method="post">
-        <label for="pin">PIN:</label>
-        <input type="password" id="pin" name="pin">
-        <button type="submit">Login</button>
-    </form>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
+    <div class="login-box">
+        <h2>Zambrano Finca Acceso</h2>
+        <form method="post">
+            <div class="user-box">
+                <input type="password" name="pin" required>
+                <label>PIN</label>
+            </div>
+            <a href="#" onclick="this.closest('form').submit(); return false;">Submit</a>
+        </form>
+    </div>
 </body>
 </html>
