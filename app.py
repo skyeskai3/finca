@@ -1,17 +1,22 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_mysqldb import MySQL
 from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.secret_key = 'your_secret_key'  # Change this to a random secret key
 
 mysql = MySQL(app)
+
+# Define your PIN here (should ideally be stored securely, not hardcoded)
+PIN = '5656'
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         pin = request.form['pin']
-        if pin == '5656':  # Replace 'your_secret_pin' with the actual PIN
+        if pin == PIN:
+            session['logged_in'] = True
             return redirect(url_for('registro'))
         else:
             flash('Invalid PIN')
@@ -19,6 +24,9 @@ def login():
 
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+
     if request.method == 'POST':
         # Get form data
         finca = request.form['finca']
