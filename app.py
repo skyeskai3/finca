@@ -6,13 +6,13 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 mysql = MySQL(app)
-app.secret_key = 'supersecretkey'  # Change this to a secure secret key
+app.secret_key = 'supersecretkey'  # Could add an app secret key here
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         pin = request.form['pin']
-        if pin == '5656':  # Replace 'your_secret_pin' with the actual PIN
+        if pin == 'xxxx': #Insert real pin here  
             session['logged_in'] = True
             return redirect(url_for('registro'))
         else:
@@ -49,7 +49,7 @@ def registro():
         exoneracion_expira = request.form['exoneracion_expira']
         comentarios = request.form['comentarios']
 
-        # Insert data into MySQL
+        # Inserting data into database
         cur = mysql.connection.cursor()
         cur.execute("""
             INSERT INTO registro_fincas (
